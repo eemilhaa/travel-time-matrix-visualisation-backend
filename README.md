@@ -14,11 +14,15 @@ for producing the data.
 - Kubernetes (OpenShift) for deploying to csc's rahti container cloud
 
 ### Server
-The approach is to serve geojsons directly from the filesystem as static files.
+The approach is to serve geojsons directly from the filesystem
+as static, precompressed files.
 A modified nginx image is used for this (See `Dockerfile`).
 It uses a custom config file
 and makes some additional adjustments to run nginx without root.
 This is needed to make the image run on OpenShift.
+
+A container image based on this is built and published automatically with github actions.
+It is hosted on github container registry and used by the deployment.
 
 ### Deployment
 The kubernetes configuration is in `manifest.yml`.
